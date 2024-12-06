@@ -1,4 +1,4 @@
-
+from collections import Counter
 # Given a non-empty array of integers nums, every element appears twice except 
 # for one. Find that single one.
 
@@ -8,17 +8,11 @@
 def SingleNum(nums):
     # input: list
     # output: integer
-    nums.sort()
-    i=0
-    while i<len(nums)-1:
-        if nums[i] == nums[i+1]:
-            nums.pop(i)
-            nums.pop(i)
-        else:
-            return nums[i]
-    return nums[i]
-    #check if there are 2+ of each value in the array. if not, return that value.
-
+    counts = Counter(nums)
+    for num, count in counts.items():
+        if count ==1:
+            return num
+        
 nums=[4,1,2,1,2]
 nums2=[2,2,1]
 print(SingleNum(nums))
